@@ -12,6 +12,7 @@ export const state: AuthState = {
 
 export const getters: GetterTree<AuthState, RootState> = {
     isLoggedIn: (state: AuthState) => state.isLoggedIn,
+    username: (state: AuthState) => state.username,
 };
 
 export const mutations: MutationTree<AuthState> = {
