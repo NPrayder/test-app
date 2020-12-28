@@ -2,7 +2,7 @@ import { AuthData } from '@/interfaces/auth-data';
 
 const login = (authData: AuthData): Promise<void> => {
     console.log(authData);
-    return new Promise<void>(resolve => setTimeout(resolve, 3000));
+    return new Promise<void>(resolve => setTimeout(resolve, 1500));
 };
 
 const logout = (): Promise<void> => {

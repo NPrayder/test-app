@@ -2,8 +2,7 @@
   <div class="dashboard-container">
     <v-navigation-drawer
         permanent
-        :mini-variant="isShowDrawer"
-        :style="{height: '100vh'}"
+        :mini-variant="isCollapsedDrawer"
         color="#272727"
         class="drawer"
     >
@@ -49,10 +48,10 @@
         </v-list-item>
       </v-list>
 
-      <v-list nav dense class="collapse">
-        <v-list-item class="menu-item" active-class="active" @click="isShowDrawer = !isShowDrawer">
+      <v-list nav dense class="collapse-btn">
+        <v-list-item class="menu-item" active-class="active" @click="isCollapsedDrawer = !isCollapsedDrawer">
           <v-list-item-icon>
-            <v-icon>{{isShowDrawer ? 'mdi-arrow-right-drop-circle' : 'mdi-arrow-left-drop-circle'}}</v-icon>
+            <v-icon>{{ isCollapsedDrawer ? 'mdi-arrow-right-drop-circle' : 'mdi-arrow-left-drop-circle' }}</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Collapse menu</v-list-item-title>
         </v-list-item>
@@ -69,7 +68,7 @@
       <v-avatar color="#111" size="40px">
         <span class="white-text">ST</span>
       </v-avatar>
-      <span class="font-weight-bold ml-2 white-text username-text">Name or username</span>
+      <span class="font-weight-bold ml-2 white-text username-text">{{ username }}</span>
     </v-app-bar>
 
     <div class="content">
@@ -78,9 +77,9 @@
           <router-view/>
         </div>
 
-        <div class="footer d-flex align-center px-4">
+        <footer class="footer white d-flex align-center px-4">
           <span>© Copyright Techinnov 2021</span>
-        </div>
+        </footer>
       </div>
     </div>
   </div>
@@ -88,14 +87,19 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
 
 @Component
 export default class Dashboard extends Vue {
-  isShowDrawer: boolean = false;
+  @Getter username!: string;
+
+  isCollapsedDrawer: boolean = true;
 }
 </script>
 
 <style scoped lang="scss">
+@import "../assets/styles/colors";
+
 .dashboard-container {
   display: grid;
   grid-template-areas: "drawer header" "drawer content";
@@ -114,9 +118,22 @@ export default class Dashboard extends Vue {
 
   .content {
     grid-area: content;
+    background-color: $white;
 
-    .page-content {
+    .container {
       width: 100%;
+      height: 100%;
+
+      .page-content {
+        width: 100%;
+      }
+
+      .footer {
+        width: 100%;
+        height: 50px;
+        border-radius: 11px;
+        margin: 12px 20px;
+      }
     }
   }
 
@@ -124,66 +141,43 @@ export default class Dashboard extends Vue {
     grid-area: drawer;
     position: sticky;
     top: 0;
-  }
+    max-height: 100vh;
+    min-height: 100vh;
 
-  .name {
-    padding: 0 4px;
-    margin: 0 0 28px;
-  }
-
-  .theme--light.v-navigation-drawer .v-divider {
-    border-color: #F5F5F5;
-  }
-
-  .v-list-item.menu-item {
-    .v-list-item__title {
-      color: #F5F5F5;
-      font-size: 16px;
+    .name {
+      padding: 0 4px;
+      margin: 0 0 28px;
     }
 
-    .v-icon {
-      color: #7B7B7B;
+    .v-divider {
+      border-color: $white;
     }
 
-    &.active {
-      background-color: rgba(#F1B331, 0.15);
-      .v-list-item__title, .v-icon {
-        color: #F1B331;
+    .v-list-item.menu-item {
+      .v-list-item__title {
+        color: $white;
+        font-size: 16px;
+      }
+
+      .v-icon {
+        color: #7B7B7B;
+      }
+
+      &.active {
+        background-color: rgba($yellow, 0.15);
+
+        .v-list-item__title, .v-icon {
+          color: $yellow;
+        }
       }
     }
-  }
 
-  .collapse {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-}
-
-.content {
-  background-color: #F5F5F5;
-
-  .container {
-    width: 100%;
-    height: 100%;
-  }
-
-  .page-title {
-    font-size: 48px;
-    line-height: 64px;
-  }
-
-  .divider {
-    border-color: #8C8C8C;
-  }
-
-  .footer {
-    width: 100%;
-    height: 50px;
-    background-color: #fff;
-    border-radius: 11px;
-    margin: 12px 20px;
+    .collapse-btn {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
   }
 }
 </style>
