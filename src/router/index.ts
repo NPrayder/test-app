@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import store from '@/store';
+import { CHECK_TOKEN_EXISTING } from '@/store/actionTypes';
 
 Vue.use(VueRouter);
 
@@ -13,25 +14,36 @@ const routes: Array<RouteConfig> = [
         },
         {
             path: '/',
-            name: 'Dashboard',
             component: () =>
-                import(/* webpackChunkName: "Dashboard" */ '../views/Dashboard.vue'),
+                import(/* webpackChunkName: "Dashboard" */ '../views/DashboardLayout.vue'),
             children: [
                 {
-                    path: '/reports',
-                    name: 'Reports',
+                    path: '/',
+                    name: 'Dashboard',
                     component: () =>
-                        import(/* webpackChunkName: "Dashboard" */ '../views/Reports.vue'),
+                        import(/* webpackChunkName: "Dashboard" */ '../views/Dashboard.vue'),
                 },
                 {
-                    path: '/reports/:id',
-                    name: 'Reports details',
+                    path: '/user-report/:id',
+                    name: 'User report',
                     component: () =>
-                        import(/* webpackChunkName: "Dashboard" */ '../views/ReportDetails.vue'),
+                        import(/* webpackChunkName: "Dashboard" */ '../views/DetailedUserReport.vue'),
+                },
+                {
+                    path: '/progress-report/:id',
+                    name: 'Progress report',
+                    component: () =>
+                        import(/* webpackChunkName: "Dashboard" */ '../views/ProgressReport.vue'),
+                },
+                {
+                    path: '/diagnostic-report/:id',
+                    name: 'Diagnostic report',
+                    component: () =>
+                        import(/* webpackChunkName: "Dashboard" */ '../views/DiagnosticReport.vue'),
                 },
                 {
                     path: '*',
-                    redirect: 'reports'
+                    redirect: '/'
                 }
             ],
         },
@@ -48,9 +60,11 @@ const router = new VueRouter({
     routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+    await store.dispatch(CHECK_TOKEN_EXISTING);
+
     if (to.name === 'Login' && store.getters.isLoggedIn) {
-        next({name: 'Reports'});
+        next({name: 'Dashboard'});
     } else if (to.name !== 'Login' && !store.getters.isLoggedIn) {
         next({name: 'Login'});
     } else {
