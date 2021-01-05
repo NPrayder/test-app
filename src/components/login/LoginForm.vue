@@ -39,7 +39,7 @@
     <div class="d-flex justify-center flex-column align-center">
       <v-btn
           class="login-btn"
-          color="#f5f5f5"
+          :color="colors.white"
           type="submit"
           depressed
           outlined
@@ -69,6 +69,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Validate } from 'vuelidate-property-decorators';
 import { required } from 'vuelidate/lib/validators';
 import * as actionTypes from '@/store/actionTypes';
+import { COLORS } from '@/utils/colors';
 
 @Component
 export default class LoginForm extends Vue {
@@ -79,6 +80,8 @@ export default class LoginForm extends Vue {
   isStaySignedIn: boolean = false;
   isShowPassword: boolean = false;
   isLoading: boolean = false;
+
+  colors = COLORS;
 
   async handleSubmit(): Promise<void> {
     this.$v.$touch();
@@ -108,7 +111,6 @@ export default class LoginForm extends Vue {
 
 .form-container {
   box-shadow: 24px 19px 86px rgba(0, 0, 0, 0.75);
-
   max-width: 610px;
   width: 100%;
   height: calc(100% - 100px);
@@ -146,7 +148,6 @@ export default class LoginForm extends Vue {
       .input {
         border-radius: 6px;
         width: 100%;
-
 
         &:not(.v-input--is-focused):not(.error--text) {
           ::v-deep {

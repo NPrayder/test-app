@@ -49,7 +49,7 @@
 
     <v-app-bar flat color="#3D3D3D" class="header">
       <v-spacer/>
-      <v-avatar color="#111" size="40px">
+      <v-avatar :color="colors.black" size="40px">
         <span class="white-text">ST</span>
       </v-avatar>
       <span class="font-weight-bold ml-2 white-text username-text">{{ username }}</span>
@@ -73,12 +73,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 import * as actionTypes from '@/store/actionTypes';
+import { COLORS } from '@/utils/colors';
 
 @Component
 export default class DashboardLayout extends Vue {
   @Getter username!: string;
 
   isCollapsedDrawer: boolean = true;
+  colors = COLORS;
 
   async logout(): Promise<void> {
     await this.$store.dispatch(actionTypes.LOGOUT);

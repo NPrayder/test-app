@@ -11,8 +11,6 @@
             :headers="headers"
             hide-default-footer
             hide-default-header
-            expand-icon=""
-            show-expand
             :items="getItemsByCategory(item.name)"
         />
       </td>
