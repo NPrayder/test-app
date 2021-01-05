@@ -1,1 +1,19 @@
 @import "fonts";
+@import "colors";
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.yellow-text {
+  color: $yellow;
+}
+
+.white-text {
+  color: $white;
+}
+
+.black-bg {
+  background-color: $black;
+}
