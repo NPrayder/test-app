@@ -2,8 +2,8 @@
   <div class="form-container black-bg py-10 d-flex flex-column justify-space-around">
     <div class="form-title d-flex flex-column justify-center align-center">
       <h1 class="text-uppercase white-text">Welcome back</h1>
-      <span class="subtitle text-uppercase white-text">Login into your <span
-          class="yellow-text">admin portal</span></span>
+      <p class="subtitle text-uppercase white-text">Login into your <span
+          class="yellow-text">admin portal</span></p>
     </div>
 
     <form @submit.prevent="handleSubmit"
