@@ -1,5 +1,3 @@
-import { Team } from '@/interfaces/Team';
-
 export interface UserReport {
     id: number;
     name: string;
@@ -13,7 +11,7 @@ export interface UserReport {
     icpPointsCurrentMap: number;
     countOfUnlockedWords: number;
     wordsInCurrentMap: number;
-    team: Team;
+    team: number;
     teamJoinDate: Date;
     lastLoginDate: Date;
     averageTime: number;

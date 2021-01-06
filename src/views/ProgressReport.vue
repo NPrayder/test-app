@@ -6,34 +6,34 @@
         <div class="row-wrapper d-flex justify-space-between">
           <div class="row d-flex flex-column">
             <div class="row d-flex justify-space-between">
-              <div class="left-side">Start Date</div>
+              <div class="left-side mb-3">Start Date</div>
               <div class="right-side">{{ getFormattedDate(map.dateStart) }}</div>
             </div>
 
             <div class="row d-flex justify-space-between">
-              <div class="left-side">End Date</div>
+              <div class="left-side mb-3">End Date</div>
               <div class="right-side">Not finished yet</div>
             </div>
 
             <div class="row d-flex justify-space-between" :style="{opacity: 0}">
-              <div class="left-side">End Date</div>
+              <div class="left-side mb-3">End Date</div>
               <div class="right-side">Not finished yet</div>
             </div>
           </div>
 
           <div class="row d-flex flex-column">
             <div class="row d-flex justify-space-between">
-              <div class="left-side">Duration</div>
+              <div class="left-side mb-3">Duration</div>
               <div class="right-side">{{ getFormattedDuration(map.duration) }}</div>
             </div>
 
             <div class="row d-flex justify-space-between">
-              <div class="left-side">Status</div>
+              <div class="left-side mb-3">Status</div>
               <div class="right-side">{{ map.status }}</div>
             </div>
 
             <div class="row d-flex justify-space-between">
-              <div class="left-side">Progress</div>
+              <div class="left-side mb-3">Progress</div>
               <div class="right-side">{{ map.progress }}%</div>
             </div>
           </div>

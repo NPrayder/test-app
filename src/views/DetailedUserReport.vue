@@ -293,7 +293,7 @@ export default class DetailedUserReport extends Vue {
     return helpers.getFormattedDuration(duration);
   }
 
-  getTeamName(team: Team): string {
+  getTeamName(team: number): string {
     return helpers.getTeamName(team);
   }
 }

@@ -41,7 +41,7 @@ export function getFormattedTaskStatus(status: Status): string {
     }
 }
 
-export function getTeamName(team: Team): string {
+export function getTeamName(team: number): string {
     switch (team) {
         case Team.EAST:
             return 'East';
@@ -51,5 +51,7 @@ export function getTeamName(team: Team): string {
             return 'South';
         case Team.WEST:
             return 'West';
+        default:
+            return 'North'
     }
 }
